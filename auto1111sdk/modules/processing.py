@@ -1361,6 +1361,11 @@ class StableDiffusionProcessingImg2Img(StableDiffusionProcessing):
         crop_region = None
 
         image_mask = self.image_mask
+        
+        self.inpaint_full_res = False
+        self.inpainting_fill = 0
+        self.width = 1280
+        self.height = 720
 
         if image_mask is not None:
             # image_mask is passed in as RGBA by Gradio to support alpha masks,
