@@ -310,7 +310,7 @@ class StableDiffusionPipeline:
         self.pipeline_data = p
         return output_images
     
-    def inpainting_img2img(self, mask: Image, init_image: Image, prompt: str, negative_prompt: str = "", seed: int = -1, steps: int = 20, cfg_scale: float = 7.0, num_images: int = 1, sampler_name: str = 'Euler', denoising_strength: float = 0.75, mask_blur: int = 4, inpaint_full_res_padding: int =32):
+    def inpainting_img2img(self, mask: Image, init_image: Image, prompt: str, negative_prompt: str = "", seed: int = -1, steps: int = 20, cfg_scale: float = 7.0, num_images: int = 1, sampler_name: str = 'Euler', denoising_strength: float = 0.75, mask_blur: int = 4, inpaint_full_res_padding: int =32, width: int = 512, height: int = 512):
         from ..modules.processing import process_images, StableDiffusionProcessingImg2Img
         input_params = {
             'mask': mask, 
@@ -327,7 +327,7 @@ class StableDiffusionPipeline:
             'inpaint_full_res_padding': inpaint_full_res_padding
         }
         input_params = self.__process_args_inpainting(**input_params)
-        p = StableDiffusionProcessingImg2Img(sd_model=self.__pipe, **input_params)
+        p = StableDiffusionProcessingImg2Img(sd_model=self.__pipe, width=width, height=height, **input_params)
         p.is_api = True
         p.init_images = [init_image]
         p.image_mask = mask

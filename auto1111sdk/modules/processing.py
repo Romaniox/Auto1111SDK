@@ -1325,6 +1325,8 @@ class StableDiffusionProcessingImg2Img(StableDiffusionProcessing):
     inpainting_mask_invert: int = 0
     initial_noise_multiplier: float = None
     latent_mask: Image = None
+    width: int = 1280
+    height: int = 720
 
     image_mask: Any = field(default=None, init=False)
 
@@ -1364,8 +1366,6 @@ class StableDiffusionProcessingImg2Img(StableDiffusionProcessing):
         
         self.inpaint_full_res = False
         self.inpainting_fill = 0
-        self.width = 1280
-        self.height = 720
 
         if image_mask is not None:
             # image_mask is passed in as RGBA by Gradio to support alpha masks,
